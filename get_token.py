@@ -1,30 +1,33 @@
 import urllib.request
-import urllib.parse
 import urllib.error
 import json
 import pprint
 import settings
-import sys
-import variables
+import password
 
 
-def orders_info_exit(orderId):
-    url = 'http://localhost:' + settings.port + '/kabusapi/orders'
-    params = {'product': 0, 'id': orderId}
-    req = urllib.request.Request('{}?{}'.format(url, urllib.parse.urlencode(params)), method='GET')
+def token():
+    obj = {'APIPassword': password.apiPassword}
+    json_data = json.dumps(obj).encode('utf8')
+
+    url = 'http://localhost:' + settings.port + '/kabusapi/token'
+
+    req = urllib.request.Request(url, json_data, method='POST')
     req.add_header('Content-Type', 'application/json')
-    req.add_header('X-API-KEY', variables.token)
 
     try:
-        print('###order_info')
+        print('###token')
         with urllib.request.urlopen(req) as res:
             print(res.status, res.reason)
             for header in res.getheaders():
                 print(header)
             print()
-            res_json = res.read()
-            content = json.loads(res_json)
+            content = json.loads(res.read())
             pprint.pprint(content)
+            token_a = content["Token"]
+            f = open("token.txt", 'w')
+            f.write(token_a)
+            f.close()
 
             return
 
@@ -37,8 +40,8 @@ def orders_info_exit(orderId):
 
     sys.exit()
 
-# if __name__ == "__main__":
-#     import sys
-#
-#     tradeP = TradeC.TradeC("test")
-#     orders_info(tradeP)
+
+if __name__ == "__main__":
+    import sys
+
+    token()

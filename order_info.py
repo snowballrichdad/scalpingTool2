@@ -5,6 +5,7 @@ import json
 import pprint
 import settings
 import sys
+import variables
 
 
 def orders_info(orderId):
@@ -12,7 +13,7 @@ def orders_info(orderId):
     params = {'product': 0, 'id': orderId}
     req = urllib.request.Request('{}?{}'.format(url, urllib.parse.urlencode(params)), method='GET')
     req.add_header('Content-Type', 'application/json')
-    req.add_header('X-API-KEY', settings.token)
+    req.add_header('X-API-KEY', variables.token)
 
     try:
         print('###order_info')
@@ -65,7 +66,6 @@ def orders_info(orderId):
         print(e)
 
     sys.exit()
-
 
 # if __name__ == "__main__":
 #     import sys

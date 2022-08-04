@@ -5,6 +5,7 @@ import json
 import pprint
 import settings
 import sys
+import variables
 
 
 def orders_info_cansel(orderId):
@@ -12,7 +13,7 @@ def orders_info_cansel(orderId):
     params = {'product': 0, 'id': orderId}
     req = urllib.request.Request('{}?{}'.format(url, urllib.parse.urlencode(params)), method='GET')
     req.add_header('Content-Type', 'application/json')
-    req.add_header('X-API-KEY', settings.token)
+    req.add_header('X-API-KEY', variables.token)
 
     try:
         print('###order_info')

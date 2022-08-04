@@ -6,6 +6,7 @@ import sys
 
 import password
 import settings
+import variables
 
 
 def send_order_entry(side, qty, marginTradeType, price):
@@ -28,7 +29,7 @@ def send_order_entry(side, qty, marginTradeType, price):
     url = 'http://localhost:' + settings.port + '/kabusapi/sendorder'
     req = urllib.request.Request(url, json_data, method='POST')
     req.add_header('Content-Type', 'application/json')
-    req.add_header('X-API-KEY', settings.token)
+    req.add_header('X-API-KEY', variables.token)
 
     try:
         print('###sendorder_entry')

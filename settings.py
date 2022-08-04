@@ -4,10 +4,6 @@ from datetime import datetime as dt
 
 port = "18080"
 
-# token読み込み
-f = open(r'..\morningScal\token.txt', 'r')
-token = f.read()
-f.close()
 
 symbol = "1570"
 qty = 10

@@ -4,6 +4,7 @@ import json
 import pprint
 import settings
 import password
+import variables
 
 
 def sendorder_takeprofit(exit_side, qty, marginTradeType, exit_price):
@@ -27,7 +28,7 @@ def sendorder_takeprofit(exit_side, qty, marginTradeType, exit_price):
     url = 'http://localhost:' + settings.port + '/kabusapi/sendorder'
     req = urllib.request.Request(url, json_data, method='POST')
     req.add_header('Content-Type', 'application/json')
-    req.add_header('X-API-KEY', settings.token)
+    req.add_header('X-API-KEY', variables.token)
 
     try:
         print('###sendorder_takeprofit')
