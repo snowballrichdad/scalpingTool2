@@ -6,7 +6,7 @@ port = "18080"
 
 
 symbol = "1570"
-qty = 10
+qty = 100
 buy_take_profit_margin = 10
 buy_stop_loss_margin = 20
 sell_take_profit_margin = 10
@@ -24,7 +24,7 @@ tstr = now_time.strftime('%Y%m%d%H%M%S')
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
-        self.log = open("c:\\data\\" + tstr + ".log", "a")
+        self.log = open(".\\" + tstr + ".log", "a")
 
     def write(self, message):
         self.terminal.write(message)
